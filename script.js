@@ -88,55 +88,110 @@ function waves() {
 
 //Gsap animation
 
+const runStart = () => {
+    console.log("Scene - 2");
+    document.getElementById("el1").src = "assets/img/el1-scene2.png";
+    document.getElementById("el2").src = "assets/img/el2-scene2.png";
+    document.getElementById("el1").style.zIndex = "6";
+    let element1 = document.getElementById("el1");
+    element1.classList.add("soft-light");
+
+}
+
 const runComplete = () => {
   console.log("finito");
+    img.src = "assets/img/bg1-scene2.png";
+    document.getElementById("oscillator").style.zIndex = "5";
+    document.getElementById("oscillator").classList.add("left-scene-2");
+    document.getElementById("el2").classList.remove("screen");
 }
 
 let i = 0;
 const runUpdate = () => {
-  i++;
-  if ( i == 15) {
-    // img.src = "assets/img/el1-scene1.png";
-  }
 }
 
-const scene1 = gsap.timeline({
-  onComplete: runComplete,
-  onUpdate: runUpdate
-});
+function scene_n1 () {
+  const scene1 = gsap.timeline({
+    onComplete: runComplete,
+    onUpdate: runUpdate
+  });
 
-scene1
-  .set('.wrapper :nth-child(4)', {
-    x:100,
-    y:150
-  })
+  scene1
+    .set('.wrapper :nth-child(4)', {
+      x:100,
+      y:150
+    })
+    .to('.wrapper :nth-child(1)', {
+      duration: 5,
+      opacity: 1,
+      scale: 1.7,
+      ease: Power3.easeOut
+     },"myLabel")
+    .to('.wrapper :nth-child(4)', {
+      y: -250,
+      x: -107,
+      scale:1,
+      rotate:0,
+      duration: 5,
+      ease: Power3.easeOut
+     },
+      '-=5',
+      "myLabel")
+    .to('.wrapper :nth-child(5)', {
+      y: 20,
+      x: 20,
+      duration: 5,
+      ease: Power3.easeOut
+     },"myLabel")
+    .to('.wrapper :nth-child(6)', {
+      y: -30,
+      x: 100,
+      duration: 3,
+     },"myLabel",'-=8');
+return scene1;
+}
+
+function scene_n2 (){
+  const scene2 = gsap.timeline({
+    onStart: runStart
+  });
+
+  scene2
   .to('.wrapper :nth-child(1)', {
-    duration: 2,
-    opacity: 1,
-    ease: Power3.easeOut
-   })
+    scale:2.2,
+    duration:5
+  },'0')
   .to('.wrapper :nth-child(4)', {
-    y: -250,
-    x: -107,
-    scale:1,
-    rotate:0,
-    duration: 5,
-    ease: Power3.easeOut
-   },
-    '-=2',
-    "myLabel")
-  .to('.wrapper :nth-child(5)', {
-    y: 20,
-    x: 20,
-    duration: 5,
-    ease: Power3.easeOut
-   })
-  .to('.wrapper :nth-child(6)', {
-    y: 30,
-    x: 100,
-    duration: 3,
-   },'-=8');
+      duration: 4,
+      zIndex:6,
+      scale:1.4,
+      y:-700,
+      x:-50,
+      repeat:1,
+      ease: Power1.easeOut,
+      yoyo: true,
+      yoyoEase: 'none'
+     },'0')
+  .to('.wrapper :nth-child(3)', {
+      zIndex:7
+     },'0')
+  .fromTo('.wrapper :nth-child(5)', {
+      zIndex:8,
+      y:400
+     },
+     {
+      y:500,
+      rotate:5,
+      duration:5,
+      // ease: Power3.easeInOut,
+     },'0');
 
+return scene2;
+}
+
+let master = gsap.timeline ()
+.add(scene_n1())
+.add(scene_n2()); // overlap slightly
 
 //Particules de feu 
 

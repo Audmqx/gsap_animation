@@ -73,7 +73,6 @@ canvas {
 }
 
 .wrapper :nth-child(5){
-	mix-blend-mode: screen;
     z-index: 3;
 }
 
@@ -82,4 +81,17 @@ canvas {
     bottom: -159px;
     left: -242px;
     opacity: 0.5;
+}
+
+.soft-light{
+    mix-blend-mode: soft-light;
+}
+
+.left-scene-2{
+    left: -267px;
+    position: relative;
+}
+
+.screen{
+    mix-blend-mode: screen;
 }
