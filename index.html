@@ -7,15 +7,28 @@
 </head>
 <body>
 	<section class="main" id="main">
-		<div class="wrapper">
+		<img class="signature" src="assets/img/bouguereau.png">
+
+		<div class="wrapper" id="wrapper">
 			<canvas id="oscillator" class="opacity" width=768 height=1366></canvas>
-			<img class="absolute" src="assets/img/bg1-scene1.png">
+			<img class="absolute" id="el0" src="assets/img/bg1-scene1.png">
 			<div id="particles-js"></div>
 			<img class="absolute" id="el1" src="assets/img/el1-scene1.png">
 			<img class="absolute screen" id="el2" src="assets/img/el2-scene1.png">
 			<img class="absolute" id="el3" src="assets/img/el3-scene1.png">
+			<img class="absolute hide" id="el4" src="assets/img/el4-scene3.png">
+			<img class="absolute hide" id="el5" src="assets/img/el5-scene3.png">
+			<img class="absolute hide" id="el6" src="assets/img/el6-scene3.png">
 		</div>
+
+		<h1>Dante & Virgile</h1>
 	</section>	
+
+	<section class="btn_wrapper">
+		<button id="play">play</button>
+		<button id="pause">pause</button>
+	</section>
+
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>

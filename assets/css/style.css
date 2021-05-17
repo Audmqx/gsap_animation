@@ -7,10 +7,28 @@ body {
     flex-direction: column;
     align-items: center;
     background: #100805;
+    font-family: Diablo;
+    color: #a71e22;
 }
+
+@font-face {
+ font-family: Diablo;
+ src: url(../font/DiabloLight.ttf);
+}
+
 
 img {
 	width: 130%;
+}
+
+h1{
+    font-size: 8.2vw;
+    position: absolute;
+    bottom: -79px;
+    z-index: 21;
+    width: 100vw;
+    text-align: center;
+    left: -24px;
 }
 
 .main{
@@ -48,12 +66,9 @@ position: relative;
 	background-position: 50% 50%; } 
 
 canvas {
-/*	background:url(https://i.imgur.com/KbKlmpk.png);*/
 	background-size:cover;
 	height:100%;
 	width:auto;
-/*	min-height:300px;*/
-	/*height: 100%;*/
     min-height: 76vh;
 }
 
@@ -94,4 +109,31 @@ canvas {
 
 .screen{
     mix-blend-mode: screen;
+}
+
+.hide{
+    display: none;
+}
+
+button{
+    padding: 10px;
+    font-size: 35px;
+    background-color: rgb(16, 8, 5);
+    color: white;
+    border: 1px solid #a71e22;
+    /*font-family: diablo;*/
+    margin: 20px;
+}
+
+.signature {
+    position: fixed;
+    width: 100px;
+    z-index: 20;
+    left: 10px;
+}
+
+.btn_wrapper{
+    padding-top: 50px;
+    width: 70%;
+    text-align: center;
 }

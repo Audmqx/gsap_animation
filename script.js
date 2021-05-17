@@ -95,11 +95,9 @@ const runStart = () => {
     document.getElementById("el1").style.zIndex = "6";
     let element1 = document.getElementById("el1");
     element1.classList.add("soft-light");
-
 }
 
 const runComplete = () => {
-  console.log("finito");
     img.src = "assets/img/bg1-scene2.png";
     document.getElementById("oscillator").style.zIndex = "5";
     document.getElementById("oscillator").classList.add("left-scene-2");
@@ -107,13 +105,28 @@ const runComplete = () => {
 }
 
 let i = 0;
-const runUpdate = () => {
+const runUpdateScene3 = () => {
+  i++;
+  if (i == 40) {
+    document.getElementById("el0").src = "assets/img/bg1-scene4.png";
+  }
+}
+
+const runStartScene3 = () => {
+    console.log("Scene - 3");
+    img.src = "assets/img/bg1-scene3.png";
+    document.getElementById("el1").classList.remove("soft-light");
+    document.getElementById("el1").src = "assets/img/el1-scene3.png";
+    document.getElementById("el2").src = "assets/img/el2-scene3.png";
+    document.getElementById("el3").src = "assets/img/el3-scene3.png";
+    document.getElementById("el4").classList.remove("hide");
+    document.getElementById("el5").classList.remove("hide");
+    document.getElementById("el6").classList.remove("hide");
 }
 
 function scene_n1 () {
   const scene1 = gsap.timeline({
-    onComplete: runComplete,
-    onUpdate: runUpdate
+    onComplete: runComplete
   });
 
   scene1
@@ -162,6 +175,7 @@ function entracte_n1 () {
     duration:0.3,
     delay:4
   })  
+  return entracte1;
 }
 
 function scene_n2 (){
@@ -171,7 +185,8 @@ function scene_n2 (){
 
   scene2
   .to('.wrapper',{
-    opacity:1
+    opacity:1,
+    delay:0.2
   }) 
   .to('.wrapper :nth-child(1)', {
     scale:2.2,
@@ -200,15 +215,122 @@ function scene_n2 (){
       rotate:5,
       duration:5,
       // ease: Power3.easeInOut,
-     },'0');
-
+     },'0')
+  .to('.wrapper',{
+    opacity:0,
+    delay:5
+  },'0');
 return scene2;
 }
 
+function scene_n3 (){
+  const scene3 = gsap.timeline({
+    onStart: runStartScene3,
+    onUpdate: runUpdateScene3
+  });
+
+  scene3
+  .set('#el4',{
+    x:100,
+    y:-80
+  })
+  .set('#el5',{
+    x:-200,
+    y:-85
+  })
+  .set('#el6',{
+    x:0,
+    y:-95
+  })
+    .set('#el3',{
+      zIndex:10,
+      opacity:1
+    })
+    .set('#el4',{
+      zIndex:11,
+      width:136,
+      height:31
+    })
+    .set('#el5',{
+      zIndex:11,
+      width:78,
+      height:85
+    })
+    .set('#el6',{
+      zIndex:11,
+      width:61,
+      height:58
+    })
+    .to('.wrapper', {
+      opacity:1,
+      duration:0.4,
+      delay:0.7
+    })
+    .to('#el1',{
+      x:500,
+      y:-400,
+      duration:6
+    },"myLabel")
+    .to('#el2',{
+      x:-50,
+      y:350,
+      duration:6
+    },"myLabel")
+    .to('#el3',{
+      x:40,
+      y:200,
+      duration:6
+    },"myLabel")
+    .to('#el4',{
+      x:-70,
+      y:30,
+      rotateX:15,
+      duration:6
+    },"myLabel")
+    .to('#el5',{
+      x:-50,
+      y:-500,
+      rotateY:15,
+      duration:6
+    },"myLabel")
+    .to('#el6',{
+      x:15,
+      y:400,
+      rotateX:45,
+      duration:6
+    },"myLabel")
+    .to('#el0',{
+      zIndex:20,
+      width:1212
+    })
+    .to('#el0',{
+      scale:1.2,
+      duration:10 
+    });
+return scene3;
+}
 let master = gsap.timeline ()
 .add(scene_n1())
 .add(entracte_n1(),"<0.2")
-.add(scene_n2()); // overlap slightly
+.add(scene_n2())
+.add(scene_n3(),'-=2'); // overlap slightly
+
+
+
+
+master.pause();
+
+const playButton = document.getElementById('play');
+playButton.addEventListener('click' , () => {
+  master.play();
+})
+
+const pauseButton = document.getElementById('pause');
+pauseButton.addEventListener('click' , () => {
+  master.pause();
+})
+
+
 
 //Particules de feu 
 
