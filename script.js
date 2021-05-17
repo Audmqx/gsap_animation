@@ -151,12 +151,28 @@ function scene_n1 () {
 return scene1;
 }
 
+function entracte_n1 () {
+  const entracte1 = gsap.timeline({
+
+  });
+  
+  entracte1
+  .to('.wrapper',{
+    opacity:0,
+    duration:0.3,
+    delay:4
+  })  
+}
+
 function scene_n2 (){
   const scene2 = gsap.timeline({
     onStart: runStart
   });
 
   scene2
+  .to('.wrapper',{
+    opacity:1
+  }) 
   .to('.wrapper :nth-child(1)', {
     scale:2.2,
     duration:5
@@ -191,6 +207,7 @@ return scene2;
 
 let master = gsap.timeline ()
 .add(scene_n1())
+.add(entracte_n1(),"<0.2")
 .add(scene_n2()); // overlap slightly
 
 //Particules de feu 
